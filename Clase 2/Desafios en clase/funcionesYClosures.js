@@ -36,7 +36,18 @@ función anónima que reciba segundo número y dé como resultado el producto de
 ambos. Luego, a partir de la función definida, crear dos funciones duplicar y
 triplicar, y probarlas con diferentes valores.*/
 
+function crearMultiplicador(num) {
+    return function (mult) {
+        return num*mult;
+    }
+};
 
+const duplicar = crearMultiplicador(2);
+
+console.log(duplicar(5));
+
+const triplicar = crearMultiplicador(3);
+console.log(triplicar(20));
 
 
 
