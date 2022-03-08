@@ -14,11 +14,11 @@ todos los contadores creados hasta el momento.
 cuenta general*/
 
 class Contador {
-    constructor(nombre, cuenta = 0) {
+    constructor(nombre) {
         this.nombre = nombre;
-        this.cuenta = cuenta;
+        this.cuenta = 0;
     }
-    contadorGlobal = 0
+    static contadorGlobal = 0
 
     obtenerResponsable() {
         return this.nombre;
@@ -30,7 +30,7 @@ class Contador {
         return this.contadorGlobal;
     };
     contar() {
-        this.contadorGlobal++;
+        Contador.contadorGlobal++;
         this.cuenta++;
     };
 
