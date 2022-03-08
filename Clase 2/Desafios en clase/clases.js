@@ -18,4 +18,32 @@ class Contador {
         this.nombre = nombre;
         this.cuenta = cuenta;
     }
+    contadorGlobal = 0
+
+    obtenerResponsable() {
+        return this.nombre;
+    };
+    obtenerCuentaIndividual() {
+        return this.cuenta;
+    };
+    obtenerCuentaGlobal() {
+        return this.contadorGlobal;
+    };
+    contar() {
+        this.contadorGlobal++;
+        this.cuenta++;
+    };
+
 }
+
+Pepe = new Contador("Pepe");
+console.log(Pepe.obtenerResponsable());
+Pepe.contar();
+console.log(Pepe.obtenerCuentaIndividual());
+
+JuanCarlos = new Contador("JuanCarlos");
+JuanCarlos.contar();
+console.log(JuanCarlos.obtenerCuentaIndividual());
+
+
+console.log(Contador.contadorGlobal);
