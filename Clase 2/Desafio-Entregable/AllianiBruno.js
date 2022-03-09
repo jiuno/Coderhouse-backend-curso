@@ -28,12 +28,12 @@ class Usuario {
             nombre: nombre,
             autor: autor
         }
-        this.libros.push(book);
+        this.libros.push(libro);
     };
 
     getBookNames() {
-        nombresLibros = []
-        libros.forEach(libro => {
+        const nombresLibros = []
+        this.libros.forEach(libro => {
             nombresLibros.push(libro.nombre)
         });
         return nombresLibros;
@@ -47,6 +47,8 @@ const libroDePrueba1 = {nombre: "Harry Potter y la Piedra Filosofal",
 const libroDePrueba2 = {nombre: "La Torre Oscura 1: El Pistolero",
                         autor: "Stephen King"};
 
+              
+
 
 const Bruno = new Usuario("Bruno","Alliani",[libroDePrueba1,libroDePrueba2],["Reina"]);
 
@@ -55,7 +57,19 @@ console.log(Bruno.getFullName())
 console.log(Bruno.countMascotas());
 
 console.log("Agrego a Mia");
+
 Bruno.addMascota("Mia");
+
 console.log(Bruno.countMascotas());
 
 console.log(Bruno.mascotas);
+
+console.log(Bruno.getBookNames());
+
+console.log("Agrego un librazo mio.")
+
+Bruno.addBook("Librazo","Yo");
+
+console.log(Bruno.getBookNames());
+
+console.log(Bruno.libros);
