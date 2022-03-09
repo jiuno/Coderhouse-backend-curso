@@ -50,3 +50,7 @@ const libroDePrueba2 = {nombre: "La Torre Oscura 1: El Pistolero",
 
 const Bruno = new Usuario("Bruno","Alliani",[libroDePrueba1,libroDePrueba2],["Reina"]);
 
+console.log(Bruno.getFullName())
+
+
+
