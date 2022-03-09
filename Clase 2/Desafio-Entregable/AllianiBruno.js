@@ -52,5 +52,10 @@ const Bruno = new Usuario("Bruno","Alliani",[libroDePrueba1,libroDePrueba2],["Re
 
 console.log(Bruno.getFullName())
 
+console.log(Bruno.countMascotas());
 
+console.log("Agrego a Mia");
+Bruno.addMascota("Mia");
+console.log(Bruno.countMascotas());
 
+console.log(Bruno.mascotas);
