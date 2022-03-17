@@ -14,4 +14,10 @@ const mostrarLetras = (palabra, delay, cb) => {
 const termine = () => console.log("Termine")
 
 
-mostrarLetras("hola",1000,termine);
+/* mostrarLetras("hola",1000,termine); */
+
+mostrarLetras("hola",500,termine);
+
+/* mostrarLetras("hola",200,termine);
+
+mostrarLetras("hola",0,termine); */
