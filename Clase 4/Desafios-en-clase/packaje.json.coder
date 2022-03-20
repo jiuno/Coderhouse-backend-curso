@@ -1,0 +1,16 @@
+{
+	"contenidoStr": "{\"name\":\"desafios-en-clase\",\"version\":\"1.0.0\",\"description\":\"\",\"main\":\"desafio01.js\",\"scripts\":{\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"keywords\":[],\"author\":\"Coderhouse\",\"license\":\"ISC\"}",
+	"contenidoObj": {
+		"name": "desafios-en-clase",
+		"version": "1.0.0",
+		"description": "",
+		"main": "desafio01.js",
+		"scripts": {
+			"test": "echo \"Error: no test specified\" && exit 1"
+		},
+		"keywords": [],
+		"author": "Coderhouse",
+		"license": "ISC"
+	},
+	"size": 235
+}
