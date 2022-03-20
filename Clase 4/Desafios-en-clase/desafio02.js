@@ -7,7 +7,7 @@ try {
 
   fs.writeFileSync(direccion, fyh)
 
-  let lectura = fs.readFileSync('./salsa', 'utf-8')
+  let lectura = fs.readFileSync(direccion, 'utf-8')
 
   console.log(lectura)
 } catch (err) {
