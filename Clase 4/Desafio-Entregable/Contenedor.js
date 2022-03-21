@@ -17,6 +17,7 @@ class Contenedor {
   leer() {
     try {
       const dataRaw = fs.readFileSync(this.fileName, 'utf-8')
+      console.log(dataRaw)
       this.objects = JSON.parse(dataRaw)
       this.id = this.objects[this.objects.length - 1].id
     } catch (error) {
@@ -36,49 +37,47 @@ class Contenedor {
       console.log('Error de lectura: ', error)
     }
   }
-  escribir(data) {
-    try {
-      fs.writeFileSync(this.fileName, JSON.stringify(data, null, '\t'))
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
-  async escribirAsync(data) {
+  escribirAsync(data) {
     try {
-      return await fs.promises.writeFile(
+      return fs.promises.writeFile(
         this.fileName,
         JSON.stringify(data, null, '\t'),
+        { flag: 'w' },
       )
     } catch (error) {
       console.log('Error de escritura: ', error)
     }
   }
 
-  save(object) {
+  async save(object) {
     try {
       let objCopy = Object.assign({}, object)
       this.id++
       objCopy.id = this.id
       this.objects.push(objCopy)
-      this.escribirAsync(this.objects)
+      await this.escribirAsync(this.objects)
       return objCopy.id
     } catch (error) {
       console.log(error)
     }
   }
 
-  deleteAll() {
-    this.escribirAsync([])
+  async deleteAll() {
     this.objects = []
+    await this.escribirAsync('[]')
+  }
+
+  deleteAll2() {
+    fs.promises.unlink(this.fileName).then((this.objects = []))
   }
 
   getAll() {
     return this.objects
   }
 
-  async deleteByID(ID) {
-    let objs = await this.getByID()
+  deleteByID(ID) {
+    let objs = this.getByID()
     console.log(objs)
     const index = objs.findIndex((obj) => {
       return obj.id == ID
@@ -132,4 +131,4 @@ cont1.save(obj3)
 cont1.save(obj1)
 cont1.save(obj2)
 
-cont1.deleteAll()
+console.log(cont1.getByID(2))
