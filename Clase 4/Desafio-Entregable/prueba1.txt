@@ -2,11 +2,26 @@
 	{
 		"title": "lapiz",
 		"price": 20,
-		"id": 1
+		"id": 4
 	},
 	{
 		"title": "goma",
 		"price": 50,
-		"id": 2
+		"id": 5
+	},
+	{
+		"title": "regla",
+		"price": 30,
+		"id": 3
+	},
+	{
+		"title": "lapiz",
+		"price": 20,
+		"id": 4
+	},
+	{
+		"title": "goma",
+		"price": 50,
+		"id": 5
 	}
 ]
