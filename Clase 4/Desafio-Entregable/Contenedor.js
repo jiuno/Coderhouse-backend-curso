@@ -77,7 +77,7 @@ class Contenedor {
   }
 
   deleteByID(ID) {
-    let objs = this.getByID()
+    let objs = this.getByID() // Aca getByID esta retornando siempre null
     console.log(objs)
     const index = objs.findIndex((obj) => {
       return obj.id == ID
@@ -132,5 +132,11 @@ cont1.save(obj1)
 cont1.save(obj2)
 
 console.log(cont1.getByID(2))
+
+console.log(cont1.getAll())
+
+// cont1.deleteAll()  Corriendo esta linea con las demas, excepto deleteByID se reproduce el problema de sobreescribir solo ciertos caracteres.
+
+//cont1.deleteByID(2)
 
 console.log(cont1.getAll())
