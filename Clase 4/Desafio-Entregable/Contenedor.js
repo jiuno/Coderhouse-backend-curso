@@ -65,11 +65,11 @@ class Contenedor {
 
   async deleteAll() {
     this.objects = []
-    await this.escribirAsync('[]')
+    await this.escribirAsync('test') // La idea es que sobreescriba todo el archivo pero solo sobreescribe los caracteres que necesita. Con test sobreescribe, si existe prueba1.txt, los primeros caracteres de prueba1.txt.
   }
 
   deleteAll2() {
-    fs.promises.unlink(this.fileName).then((this.objects = []))
+    fs.promises.unlink(this.fileName).then((this.objects = [])) //No es lo que pide la consigna.
   }
 
   getAll() {
