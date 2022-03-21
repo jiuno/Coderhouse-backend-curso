@@ -132,3 +132,5 @@ cont1.save(obj1)
 cont1.save(obj2)
 
 console.log(cont1.getByID(2))
+
+console.log(cont1.getAll())
