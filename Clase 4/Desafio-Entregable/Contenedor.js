@@ -65,7 +65,7 @@ class Contenedor {
 
   async deleteAll() {
     this.objects = []
-    await this.escribirAsync('test') // La idea es que sobreescriba todo el archivo pero solo sobreescribe los caracteres que necesita. Con test sobreescribe, si existe prueba1.txt, los primeros caracteres de prueba1.txt.
+    await this.escribirAsync('test') // La idea es que sobreescriba todo el archivo pero solo sobreescribe los caracteres que necesita. Con test sobreescribe, si existe productos.txt, los primeros caracteres de productos.txt.
   }
 
   deleteAll2() {
@@ -123,7 +123,7 @@ const obj3 = {
   price: 30,
 }
 
-const cont1 = new Contenedor('prueba1.txt')
+const cont1 = new Contenedor('productos.txt')
 
 cont1.save(obj1)
 cont1.save(obj2)
