@@ -76,7 +76,7 @@ class Contenedor {
     return this.objects
   }
 
-  deleteByID(ID) {
+  deleteByID2(ID) {
     let objs = this.getByID() // Aca getByID esta retornando siempre null
     console.log(objs)
     const index = objs.findIndex((obj) => {
@@ -85,6 +85,12 @@ class Contenedor {
     objs.splice(index, 1)
     console.log(objs)
     this.escribirAsync(objs)
+  }
+
+  async deleteByID(ID) {
+    const id = this.objects.filter((x) => x.id !== ID)
+    this.objects = id
+    await this.escribirAsync(this.objects)
   }
 
   getByID(ID) {
@@ -128,8 +134,6 @@ const cont1 = new Contenedor('productos.txt')
 cont1.save(obj1)
 cont1.save(obj2)
 cont1.save(obj3)
-cont1.save(obj1)
-cont1.save(obj2)
 
 console.log(cont1.getByID(2))
 
@@ -137,6 +141,4 @@ console.log(cont1.getAll())
 
 // cont1.deleteAll()  Corriendo esta linea con las demas, excepto deleteByID se reproduce el problema de sobreescribir solo ciertos caracteres.
 
-//cont1.deleteByID(2)
-
-console.log(cont1.getAll())
+cont1.deleteByID(2)
