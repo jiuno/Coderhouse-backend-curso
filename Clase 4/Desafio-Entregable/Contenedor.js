@@ -1,17 +1,25 @@
 const fs = require('fs')
 
-productos = []
-
 class Contenedor {
-  archivo //Archivo donde se guardaran los productos
-  constructor(archivo) {
-    this.archivo = archivo
-    this.id = 0
+  fileName //[String] fileName donde se guardaran los objetos.
+  constructor(fileName) {
+    this.fileName = fileName
+    this.id = 1
+    this.objects = []
+
+    const existeFile = fs.existsSync(this.fileName)
+
+    if (existeFile) {
+      this.objects = this.leer()
+    }
   }
 
-  escribir(data) {
+  async escribirAsync(data) {
     try {
-      fs.writeFileSync(this.archivo, JSON.stringify(data, null, '\t'))
+      return await fs.promises.writeFile(
+        this.fileName,
+        JSON.stringify(data, null, '\t'),
+      )
     } catch (error) {
       console.log('Error de escritura: ', error)
     }
@@ -19,18 +27,41 @@ class Contenedor {
 
   leer() {
     try {
-      const dataRaw = fs.readFileSync(this.archivo, 'utf-8')
-      return dataRaw
+      const dataRaw = fs.readFileSync(this.fileName, 'utf-8')
+      return JSON.parse(dataRaw)
     } catch (error) {
       console.log('Error de lectura: ', error)
     }
   }
 
-  save(objeto) {
-    objeto.id = this.id++
-    productos.push(objeto)
-    this.escribir(productos)
-    return objeto.id
+  async leerAsync() {
+    try {
+      const objects = await fs.promises.readFile(this.fileName, 'utf-8')
+      this.objects = JSON.parse(objects)
+    } catch (error) {
+      console.log('Error de lectura: ', error)
+    }
+  }
+
+  save(object) {
+    object.id = this.id++
+    this.objects.push(object)
+    this.escribirAsync(this.objects)
+    return object.id
+  }
+
+  async getAll() {
+    const data = await this.leerAsync()
+    return data
+  }
+
+  async getByID(ID) {
+    objects = await this.getAll()
+    for (let i = 0; i < objects.length; i++) {
+      if (objects[i].id == ID) {
+        return objects[ID]
+      }
+    }
   }
 }
 
@@ -51,9 +82,10 @@ const obj3 = {
 
 const cont1 = new Contenedor('prueba1.txt')
 
-cont1.save(obj1)
-cont1.save(obj2)
-cont1.save(obj3)
+// cont1.save(obj1)
+// cont1.save(obj2)
+// cont1.save(obj3)
 
-const datos = cont1.leer()
-console.log(JSON.parse(datos)[0])
+const datos = cont1.getAll()
+
+console.log(datos)
