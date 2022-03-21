@@ -1,13 +1,12 @@
-[
-	{
+[]	{
 		"title": "lapiz",
 		"price": 20,
-		"id": 4
+		"id": 1
 	},
 	{
 		"title": "goma",
 		"price": 50,
-		"id": 5
+		"id": 2
 	},
 	{
 		"title": "regla",

@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 class Contenedor {
-  fileName //[String] fileName donde se guardaran los objetos.
+  fileName // [String] fileName donde se guardaran los objetos
   constructor(fileName) {
     this.fileName = fileName
     this.id = 0
@@ -26,8 +26,12 @@ class Contenedor {
 
   async leerAsync() {
     try {
-      const objects = await fs.promises.readFile(this.fileName, 'utf-8')
-      this.objects = JSON.parse(objects)
+      const result = {}
+      const p = await fs.promises.readFile(this.fileName, 'utf-8')
+      p.then((data) => {
+        result = JSON.parse(data)
+      })
+      return result
     } catch (error) {
       console.log('Error de lectura: ', error)
     }
@@ -53,27 +57,24 @@ class Contenedor {
 
   save(object) {
     try {
+      let objCopy = Object.assign({}, object)
       this.id++
-      object.id = this.id
-      this.objects.push(object)
+      objCopy.id = this.id
+      this.objects.push(objCopy)
       this.escribirAsync(this.objects)
-      return object.id
+      return objCopy.id
     } catch (error) {
       console.log(error)
     }
   }
 
-  async deleteAll() {
+  deleteAll() {
+    this.escribirAsync([])
     this.objects = []
-    this.escribirAsync(this.objects)
   }
-  async getAll() {
-    try {
-      await this.leerAsync()
-      return this.objects
-    } catch (error) {
-      console.log(error)
-    }
+
+  getAll() {
+    return this.objects
   }
 
   async deleteByID(ID) {
@@ -84,7 +85,7 @@ class Contenedor {
     })
     objs.splice(index, 1)
     console.log(objs)
-    // this.escribirAsync(objs)
+    this.escribirAsync(objs)
   }
 
   getByID(ID) {
@@ -93,7 +94,7 @@ class Contenedor {
       const objects = this.getAll()
       for (let i = 0; i < objects.length; i++) {
         if (objects[i].id == ID) {
-          objEncontrado = objects[ID]
+          objEncontrado = objects[i]
         }
       }
       if (objEncontrado) {
@@ -130,4 +131,5 @@ cont1.save(obj2)
 cont1.save(obj3)
 cont1.save(obj1)
 cont1.save(obj2)
-// cont1.save(obj3)
+
+cont1.deleteAll()
