@@ -16,10 +16,14 @@ class Contenedor {
   }
 
   async write(data) {
-    return await fs.writeFileSync(
-      this.fileName,
-      JSON.stringify(data, null, '\t'),
-    )
+    try {
+      return await fs.writeFileSync(
+        this.fileName,
+        JSON.stringify(data, null, '\t'),
+      )
+    } catch (err) {
+      console.log('Error en la escritura del archivo', err)
+    }
   }
 
   readSync() {
@@ -28,7 +32,7 @@ class Contenedor {
       return JSON.parse(dataRaw)
     } catch (err) {
       console.log(
-        'No existe el archivo. Guardar primero 1 objecto con Contenedor.save',
+        'No existe el archivo. Guardar primero un objecto con Contenedor.save',
         err,
       )
     }
@@ -47,12 +51,16 @@ class Contenedor {
   }
 
   async save(object) {
-    let objCopy = Object.assign({}, object)
-    this.id++
-    objCopy.id = this.id
-    this.objects.push(objCopy)
-    await this.write(this.objects)
-    return objCopy.id
+    try {
+      let objCopy = Object.assign({}, object)
+      this.id++
+      objCopy.id = this.id
+      this.objects.push(objCopy)
+      await this.write(this.objects)
+      return objCopy.id
+    } catch (err) {
+      console.log('Error al guardar el objeto', err)
+    }
   }
 
   async getAll() {
@@ -65,16 +73,26 @@ class Contenedor {
   }
 
   async getById(ID) {
-    this.objects = await this.read()
-    const obj = this.objects.filter((ob) => {
-      return ob.id == ID
-    })
-    return obj[0] //Solo debe devolver 1 obj. El array no debe tener más de un elemento
+    try {
+      this.objects = await this.read()
+      const obj = this.objects.filter((ob) => {
+        return ob.id == ID
+      })
+      if (obj.length == 0) {
+        throw new Error('ID no encontrado')
+      } else if (obj.length > 1) {
+        throw new Error(`Mas de un objeto con el ID buscado. }`)
+      } else {
+        return obj[0] //Solo debe devolver 1 obj. El array no debe tener más de un elemento
+      }
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   async deleteAll() {
     this.objects = []
-    await this.write(this.objects)
+    return await this.write(this.objects)
   }
 
   async deleteByID(ID) {
@@ -87,34 +105,4 @@ class Contenedor {
   }
 }
 
-const lapiz = {
-  title: 'lapiz',
-  price: 20,
-}
-
-const goma = {
-  title: 'goma',
-  price: 30,
-}
-
-const regla = {
-  title: 'regla',
-  price: 10,
-}
-
-const cont = new Contenedor('./productos.txt')
-
-cont.save(goma)
-cont.save(regla)
-cont.save(lapiz)
-
-cont
-  .getAll()
-  .then((data) => {
-    console.log(data)
-  })
-  .then(() => {
-    cont.getById(2).then((data) => console.log(data))
-  })
-  .then(() => cont.deleteByID(2))
-  .then(() => cont.getAll().then((data) => console.log(data)))
+module.exports = Contenedor
