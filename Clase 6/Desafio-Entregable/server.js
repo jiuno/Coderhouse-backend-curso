@@ -14,6 +14,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './resources/index.html'))
+})
+
 app.get('/productos', (req, res) => {
   productos.getAll().then((prod) => {
     res.send(JSON.stringify(prod, null, '\t')) //Se ve "feo"
