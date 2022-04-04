@@ -1,6 +1,6 @@
 [
 	{
-		"title": "regla",
+		"title": "goma",
 		"price": 20,
 		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
 		"id": 1
@@ -15,18 +15,6 @@
 		"title": "goma",
 		"price": 20,
 		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
-		"id": 4
-	},
-	{
-		"title": "goma",
-		"price": 20,
-		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
-		"id": 5
-	},
-	{
-		"title": "goma",
-		"price": 20,
-		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
-		"id": 6
+		"id": 3
 	}
 ]
