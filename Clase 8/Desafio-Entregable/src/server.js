@@ -1,7 +1,6 @@
 /** Imports */
 const express = require('express')
 const path = require('path')
-const resourcesPath = path.resolve(__dirname, './resources')
 const mainRouter = require('./routes/index')
 
 /** Express initialization */

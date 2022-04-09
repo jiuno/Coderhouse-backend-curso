@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const resourcesPath = path.resolve(__dirname, './resources')
-const Contenedor = require('./resources/Contenedor')
+const Contenedor = require('../resources/Contenedor')
 
 const productos = new Contenedor(path.resolve(resourcesPath, './productos.txt'))
 
