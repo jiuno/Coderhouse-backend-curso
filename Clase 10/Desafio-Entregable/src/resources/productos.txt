@@ -1,0 +1,20 @@
+[
+	{
+		"title": "goma",
+		"price": 20,
+		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
+		"id": 1
+	},
+	{
+		"title": "lapiz",
+		"price": 20,
+		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
+		"id": 2
+	},
+	{
+		"title": "goma",
+		"price": 20,
+		"url": "https://www.istockphoto.com/es/vector/borrador-de-ilustraci%C3%B3n-vectorial-gm180387767-27051280",
+		"id": 3
+	}
+]

@@ -6,8 +6,6 @@ const productos = new Contenedor(
   path.resolve(__dirname, '../resources/productos.txt'),
 )
 
-console.log(__dirname)
-
 const router = express.Router()
 router.get('/', (req, res) => {
   productos.getAll().then((prod) => {
