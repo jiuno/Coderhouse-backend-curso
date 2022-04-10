@@ -13,6 +13,12 @@ server.on('error', () => {
   console.log('Hubo un error')
 })
 
+app.set('views', path.resolve(__dirname, '../views'))
+app.set('view engine', 'pug')
+
+const publicPath = path.resolve(__dirname, '../public')
+
+app.use(express.static(publicPath))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 

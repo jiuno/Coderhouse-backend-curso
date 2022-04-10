@@ -9,7 +9,8 @@ const productos = new Contenedor(
 const router = express.Router()
 router.get('/', (req, res) => {
   productos.getAll().then((prod) => {
-    res.send(JSON.stringify(prod, null, '\t')) //Se ve "feo"
+    //res.send(JSON.stringify(prod, null, '\t')) //Se ve "feo"
+    res.render('tablaProductos', { prod })
   })
 })
 
