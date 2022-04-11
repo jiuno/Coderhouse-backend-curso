@@ -18,10 +18,8 @@ router.post('/', async (req, res) => {
   try {
     const id = await productos.save(req.body)
     const prod = await productos.getById(id)
-    res.send({
-      status: 'Producto guardado',
-      producto: prod,
-    })
+
+    res.redirect('../api')
   } catch (err) {
     console.log(err)
   }
