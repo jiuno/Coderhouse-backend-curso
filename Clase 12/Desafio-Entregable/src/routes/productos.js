@@ -1,9 +1,9 @@
 const express = require('express')
 const path = require('path')
 const Contenedor = require('../resources/Contenedor')
-
 const productos = Contenedor
 const router = express.Router()
+
 router.get('/', (req, res) => {
   productos.getAll().then((prod) => {
     //res.send(JSON.stringify(prod, null, '\t')) //Se ve "feo"

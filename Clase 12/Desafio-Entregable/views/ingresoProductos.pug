@@ -22,7 +22,7 @@ html(lang="en")
                 button.btn.btn-primary(type="submit" form="formulario" formmethod="post" ) Enviar
             div(id="prodTable") 
                 h1 Vista de Productos 
-                table(class="table table-striped")
+                table(class="table table-striped",id="myTable")
                     if prod.length > 0
                         thead
                                 tr
@@ -30,7 +30,7 @@ html(lang="en")
                                 th(scope="col") Title
                                 th(scope="col") Price
                                 th(scope="col") Picture
-                        tbody
+                        tbody(id="tbody")
                                 each obj in prod
                                     tr
                                         th(scope="row")=obj.id

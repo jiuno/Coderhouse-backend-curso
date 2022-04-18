@@ -4,6 +4,8 @@ const path = require('path')
 const mainRouter = require('./routes/index')
 const http = require('http')
 const io = require('socket.io')
+const Contenedor = require('./resources/Contenedor')
+const productos = Contenedor
 /** Express initialization */
 const app = express()
 const myServer = http.Server(app)
@@ -21,6 +23,11 @@ myWSServer.on('connection', (socket) => {
   console.log('Conexion')
   console.log('Server', socket.id)
   console.log('Cliente', socket.client.id)
+
+  socket.on('Product added', () => {
+    console.log('Mensaje cliente recibido')
+    /* ocket.broadcast.emit('Product added by other') */
+  })
 })
 
 app.set('views', path.resolve(__dirname, '../views'))
